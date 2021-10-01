@@ -23,7 +23,7 @@ Foreach($webserver in $webservers){ # loop through webservers and backup existin
 
     Try{
     #rename existing prod EMIE file to back it up
-    Rename-Item -Path "$($webserver)\IE11-EnterpriseMode-SiteList-v2.xml" -NewName "IE11-EnterpriseMode-SiteList-v2.xml.v$($OldVersion)" -ErrorAction Stop -whatif
+    Rename-Item -Path "$($webserver)\IE11-EnterpriseMode-SiteList-v2.xml" -NewName "IE11-EnterpriseMode-SiteList-v2.xml.v$($OldVersion)" -ErrorAction Stop #-whatif
     Write-host -ForegroundColor Green "Backup created on $($webserver)"
     }catch{
         $Errorcount++
@@ -46,7 +46,7 @@ Foreach($webserver in $webservers){ # loop through webservers and move pilot fil
 
     Try{
     #Copy and rename Pilot file to Prod
-    Get-ChildItem -Path "$($webserver)\IE11-EnterpriseMode-SiteList-v2_pilot.xml" -ErrorAction Stop | Copy-Item -Destination { "$($webserver)\IE11-EnterpriseMode-SiteList-v2.xml" } -ErrorAction Stop -whatif
+    Get-ChildItem -Path "$($webserver)\IE11-EnterpriseMode-SiteList-v2_pilot.xml" -ErrorAction Stop | Copy-Item -Destination { "$($webserver)\IE11-EnterpriseMode-SiteList-v2.xml" } -ErrorAction Stop #-whatif
     Write-host -ForegroundColor Green "Deployment completed on $($webserver)"
     }catch{
         $Errorcount++
